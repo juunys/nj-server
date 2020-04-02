@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
 	before(:all) do
 		@user_role = create(:user_role)
 	    @user = create(:user)
-	 end
+	end
 
 	context 'validation tests' do
 

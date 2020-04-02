@@ -13,7 +13,7 @@ Feature: Logging in
 	    And I should not be authorized
 
     Scenario: Admin enters wrong password
-	    Given a registered user with the email "admin@nanjun.com" with password "123" exists
+	    Given a registered user with the email "admin@nanajun.com" with password "123" exists
 	    And I am on the "/admin/login" page
 	    When I fill in "email" with "admin@nanajun.com"
 	    And I fill in "password" with "1234"

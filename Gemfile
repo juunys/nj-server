@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# city-state is a very simple ruby gem to get a list of states in a country. Also, you can get a list of cities in a state, and a list of all countries of the world.
+gem 'city-state'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
