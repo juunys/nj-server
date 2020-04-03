@@ -1,0 +1,111 @@
+    <!-- Sidebar  -->
+    <nav id="sidebar" style="overflow-y: auto;">
+        <div class="sidebar-header">
+            <a href="/admin/dashboard"><img src="/assets/images/nanajun.png" alt="logo" class="logo-style" ></a>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <img style="width: 10%;" src="/assets/images/nanajun.png">
+                <%= current_user.first_name %>
+                </a>
+                <ul class="collapse list-unstyled" id="adminSubmenu">
+                    <li>
+                        <a href="/users/<%= current_user.id %>">Meu Perfil</a>
+                    </li>
+                    <li>
+                        <a href="/users/<%= current_user.id %>/edit">Editar Perfil</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="/dashboard">
+                    <i class="fas fa-home"></i>
+                    Início
+                </a>
+            </li>
+            <li>
+                <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fa fa-user"></i>
+                    Usuários
+                </a>
+                <ul class="collapse list-unstyled" id="usersSubmenu">
+                    <li>
+                         <a href="/users/">Listar</a>
+                    </li>
+                    <li>
+                        <a href="/users/new"> Criar </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#productsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-cubes"></i>
+                    Produtos
+                </a>
+                <ul class="collapse list-unstyled" id="productsSubmenu">
+                    <li>
+                         <a href="/products/">Listar</a>
+                    </li>
+                    <li>
+                        <a href="/products/new"> Criar </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#conversationsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="far fa-comment-dots"></i>
+                    Conversas
+                </a>
+                <ul class="collapse list-unstyled" id="conversationsSubmenu">
+                    <li>
+                         <a href="/conversations/">Listar</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#ordersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-truck-loading"></i>
+                    Pedidos
+                </a>
+                <ul class="collapse list-unstyled" id="ordersSubmenu">
+                    <li>
+                         <a href="/orders/">Listar</a>
+                    </li>
+                    <li>
+                         <a href="/orders/new">Criar</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#setupSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-toolbox"></i>
+                    Setup
+                </a>
+                <ul class="collapse list-unstyled" id="setupSubmenu">
+                    <li>
+                         <a href="/genders/">Gênero</a>
+                    </li>
+                    <li>
+                         <a href="/conditions">Condição</a>
+                    </li>
+                    <li>
+                         <a href="/sizes">Tamanho</a>
+                    </li>
+                    <li>
+                         <a href="/status_products">Status produto</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/logout">
+                    <i class="fa fa-power-off "></i>
+                    Sair
+                </a>
+            </li>
+        </ul>
+    </nav>

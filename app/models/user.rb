@@ -5,4 +5,8 @@ class User < ApplicationRecord
 
   	has_secure_password
 	validates :email, uniqueness: true
+
+	def user_role
+		UserRole.find_by(id: self.user_role_id)
+	end
 end

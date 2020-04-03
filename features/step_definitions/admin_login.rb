@@ -1,53 +1,54 @@
-Given(/^no current user$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+#-------------------- NO CURRENT USER -------------------------#
+
+Given("no current user") do
+  @current_user = nil
 end
 
-When(/^I access a page$/) do
-  visit 'localhost:3000'
+When("I access the dashboard page") do
+  visit admin_dashboard_path
 end
 
-Then(/^the login form should be shown$/) do
-  expect(page).to have_current_path(session_path)
+Then("the login form should be shown") do
+  expect(page).to have_current_path(admin_login_path)
 end
 
-Then(/^I should not be authorized$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+#-------------------- INVALID USER -------------------------# 
+
+Given("a registered user with the email {string} with password {string} exists") do |email, password|
+  @user
 end
 
-Given(/^a registered user with the email "([^"]*)" with password "([^"]*)" exists$/) do |arg1, arg2|
-  pending # Write code here that turns the phrase above into concrete actions
+Given("I access login page") do
+  visit admin_login_path
 end
 
-Given(/^I am on the "([^"]*)" page$/) do |arg1|
-  visit 'localhost:3000'
+When("I fill in {string} with {string} and {string} with {string}") do |email, email_input, password, password_input|
+  fill_in email, with: email_input
+  fill_in password, with: password_input
 end
 
-When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |email, password|
-  fill_in 'email', with: 'admin@nanajun.com.br'
-  fill_in 'password', with: '1234'
+When("I press {string}") do |string|
+  click_on(string)
 end
 
-When(/^I press "([^"]*)"$/) do |arg1|
-  click_button 'Enviar'
+Then("I should see {string}") do |string|
+  expect(page).to have_content string
 end
 
-Then(/^I should see "([^"]*)"$/) do |arg1|
-  pending # Write code here that turns the phrase above into concrete actions
+And("I should not be signed in") do
+  expect(page).to have_current_path(admin_root_path)
 end
 
-Then(/^I should not be signed in$/) do
-  pending # Write code here that turns the phrase above into concrete actions
+#-------------------- VALID USER -------------------------#
+
+Given("a confirmed user with the email {string} with password {string} exists") do |string, string2|
 end
 
-# Given(/^a confirmed user with the email "([^"]*)" with password "([^"]*)" exists$/) do |arg1, arg2|
-#   pending # Write code here that turns the phrase above into concrete actions
-# end
 
-# Then(/^I should be redirected to "([^"]*)"$/) do |arg1|
-#   pending # Write code here that turns the phrase above into concrete actions
-# end
+Then("I should be redirected to {string}") do |string|
+    expect(page).to have_current_path(admin_dashboard_path)
+end
 
-# Then(/^I should be signed in$/) do
-#   pending # Write code here that turns the phrase above into concrete actions
-# end
+
+
 

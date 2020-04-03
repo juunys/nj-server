@@ -1,0 +1,206 @@
+<div class="wrapper ">
+    <%= render 'layouts/sidebar' %>
+	<div class="content" style="background: #faed9b;">		
+        <%= render 'layouts/navbar' %>        
+    	<%= render 'layouts/flash_messages' %>
+        <div class="row" style="padding-right: 3%;padding-left: 3%;">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                    <i class="fa fa-user text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                    <p class="card-category">Usuários</p>
+                                    <p class="card-title" style="color: #323f78"><%= @total_users %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-user"></i> 
+                            <a href="/users" class="a__sub"style="color: grey">Ver usuários</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                    <i class="fas fa-cubes text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                    <p class="card-category">Produtos</p>
+                                    <p class="card-title" style="color: #323f78"><%= @total_products %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fas fa-cubes"></i> 
+                            <a href="/products" class="a__sub" style="color: grey">Ver produtos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                    <i class="fas fa-truck-loading text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                    <p class="card-category">Pedidos</p>
+                                    <p class="card-title" style="color: #323f78"><%= @total_orders %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fas fa-truck-loading"></i>
+                            <a href="/products" class="a__sub" style="color: grey">Ver pedidos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-5 col-md-4">
+                                <div class="icon-big text-center icon-warning">
+                                    <i class="far fa-comment-dots text-warning"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 col-md-8">
+                                <div class="numbers">
+                                    <p class="card-category">Conversas</p>
+                                    <p class="card-title" style="color: #323f78"><%= @total_conversations %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="far fa-comment-dots"></i>
+                            <a href="/conversations" class="a__sub" style="color: grey">Ver conversas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-right: 3%;padding-left: 3%;">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Novos Usuários <span style="float: right"><%= @total_users %></span></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                        <th>Criado em </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @users.each do |user| %>
+                                        <tr>    
+                                            <td><%= user.first_name %></td>
+                                            <td><%= user.email %></td> 
+                                            <td><%= user.created_at.strftime("%d/%m/%Y") %></td> 
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Novos Pedidos <span style="float: right"><%= @total_orders%></span></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive text-center">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Quantidade</th>
+                                        <th>Produto</th>
+                                        <th>Usuário</th>
+                                        <th>Pedido em</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @orders.each do |order| %>
+                                    <tr>    
+                                        <td><%= order.code %></td>
+                                        <td><%= order.quantity %></td>
+                                        <td><%= order.product.name %></td>
+                                        <td><%= order.user.name %></td>
+                                        <% if order.created_at %>
+                                            <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+                                        <% else %>
+                                            <td></td>
+                                        <% end %>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+
+<style>
+    .card {
+        box-shadow: 13px 14px 10px -4px rgba(0, 0, 0, 0.15)!important;
+    }
+
+    .navbar {
+        box-shadow: 1px 7px 5px rgba(0, 0, 0, 0.1)!important;
+    }
+
+    .wrapper {
+        background: #faed9b!important;
+    }
+
+    .stats:hover .svg-inline--fa {
+        color: #323f78!important;
+    }
+
+    .stats:hover .a__sub {
+        color: #323f78!important;
+    }
+    
+    
+</style>

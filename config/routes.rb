@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 	namespace :admin do
 		get '/dashboard' => 'home#index'
-		root 'sessions#new'
+		root to: 'sessions#new'
 		get '/login' => 'sessions#new'
 		post '/login' => 'sessions#create'
 		get '/logout' => 'sessions#destroy'

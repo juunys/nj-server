@@ -12,6 +12,11 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.action_cable.url = "ws://localhost:3000/nj_chat_room"
+
+  config.action_cable.allowed_request_origins = [/.*/]
+
+
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
@@ -44,6 +49,20 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.sendgrid.net",
+   :port                 => 587,
+   :user_name            => "Sportscard",
+   :password             => "Sport5caRd123",
+   :domain               => '127.0.0.1:3000',
+   :authentication       => "plain",
+  :enable_starttls_auto => true
+  }
+  config.action_mailer.default_url_options = {host: '127.0.0.1:3000'}
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

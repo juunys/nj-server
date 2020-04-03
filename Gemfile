@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'rack-cors', :require => 'rack/cors' 
+
+
 # city-state is a very simple ruby gem to get a list of states in a country. Also, you can get a list of cities in a state, and a list of all countries of the world.
 gem 'city-state'
 
@@ -41,7 +44,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   # Create model to test
