@@ -1,5 +1,7 @@
 # README
 
+[![Coverage Status](https://coveralls.io/repos/github/juunys/nj-server/badge.svg?branch=master)](https://coveralls.io/github/juunys/nj-server?branch=master)
+
 ## Capybara error
 sudo apt-get install ruby-dev
 
