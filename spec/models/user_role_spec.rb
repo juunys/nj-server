@@ -17,7 +17,7 @@ RSpec.describe UserRole, type: :model do
 		end
 
 		it "has a unique query_name" do
-		    user_role2 = build(:user_role, name: "admin")
+		    user_role2 = build(:user_role, query_name: "admin")
 		    expect(user_role2).to_not be_valid
 		end
 	end
