@@ -1,4 +1,9 @@
 FactoryBot.define do
+  factory :status_user do
+    name { "MyString" }
+    query_name { "MyString" }
+  end
+
 
 	factory :user_role do
 		name {"Admin"}
@@ -12,6 +17,7 @@ FactoryBot.define do
 		email {"mary_jane@gmail.com"}
 		password {"123"}
 		user_role_id {1}
+		status_user_id {1}
 		created_at {'1/04/2020'}
 	end
 

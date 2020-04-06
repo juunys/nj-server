@@ -27,11 +27,36 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+# Dependence to bootstrap
+gem 'popper_js', '~> 1.14.5'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
+# Bootstrap
+gem 'bootstrap', '~> 4.4.1'
+# Font Awesome icons
+gem "font_awesome5_rails"
+# CORS
 gem 'rack-cors', :require => 'rack/cors' 
-
+# Handle nested forms
+gem "cocoon"
+# Dependence to datatable
+gem 'jquery-datatables-rails'
+# Rails datatable
+gem 'ajax-datatables-rails'
+# Speedup JSON rendering to datatable
+gem 'yajl-ruby', require: 'yajl'
+# Text Editor 
+gem 'ckeditor'
 # Cover tests
 gem 'coveralls', require: false
+
+# ################################ UPLOAD FILES #####################
+#Ruby SDK for interacting with S3
+gem 'aws-sdk', '~> 2'
+#Ionic avatar to AWS
+gem 'transloadit-rails'
+
 
 
 
