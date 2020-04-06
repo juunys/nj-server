@@ -32,7 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'popper_js', '~> 1.14.5'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 # # Bootstrap
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 # Font Awesome icons
 gem "font_awesome5_rails"
 # CORS
