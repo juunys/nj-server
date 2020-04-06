@@ -1,10 +1,10 @@
 class Admin::UsersController < Admin::ApplicationController
 	before_action :authorize_session
     before_action :set_user, only: [:show, :edit, :update]
-    # before_action :set_s3_direct_post
+    before_action :set_s3_direct_post
 
     def index
-        users = UserDatatable.new(params, view_context: view_context)
+        users = Admin::UserDatatable.new(params, view_context: view_context)
         @users = users.get_raw_records
         respond_to do |format|
             format.html
@@ -84,9 +84,7 @@ class Admin::UsersController < Admin::ApplicationController
     	params.required(:address).permit(:id, :address, :address_number, :complement, :neighborhood, :cep, :city, :state)
     end
 
-    # def set_s3_direct_post
-    #     @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read', content_type:'Content-Type')
-    # end
-end
-
+    def set_s3_direct_post
+        @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read', content_type:'Content-Type')
+    end
 end

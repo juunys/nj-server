@@ -27,19 +27,21 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
+
 # Dependence to bootstrap
 gem 'popper_js', '~> 1.14.5'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
-# Bootstrap
-gem 'bootstrap', '~> 4.4.1'
+# # Bootstrap
+gem 'bootstrap', '~> 4.0.0'
 # Font Awesome icons
 gem "font_awesome5_rails"
 # CORS
 gem 'rack-cors', :require => 'rack/cors' 
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Handle nested forms
-gem "cocoon"
+gem 'cocoon'
 # Dependence to datatable
 gem 'jquery-datatables-rails'
 # Rails datatable

@@ -1,0 +1,51 @@
+<div class="wrapper ">
+    <%= render 'layouts/sidebar' %>
+    <div class="content">       
+        <%= render 'layouts/navbar' %>        
+        <%= render 'layouts/flash_messages' %>
+        <div class="row" >
+            <a href="/users/<%= @user.id %>/edit" class="a__new--float">
+              <i class="fa fa-pencil" style="margin: 24px;"></i>
+            </a>
+            <div class="col-md-10 mr-auto ml-auto">
+                <div class="card card-user">
+                    <div class="image">
+                        <img src="/assets/images/damir-bosnjak.jpg" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <div class="author">
+                                <% if !@user.avatar %>
+                                    <img class="avatar border-gray" src="/assets/images/mike.jpg" alt="...">
+                                <% else %>
+                                    <img class="avatar border-gray" src="<%= @user.avatar %>" >
+                                <% end %>
+                                <h5 class="title"><%= @user.name %></h5>
+                            <p class="description--black">
+                                <i class="fa fa-envelope" style="margin-right:2%"></i>
+                                <%= @user.email %>
+                            </p>
+                            <% u_adr = @user.address %>
+                            <p class="description--black">
+                                <% if u_adr.extra_info.blank?  %>    
+                                    <%= u_adr.address %>, <%= u_adr.address_number%>, <%= u_adr.neighborhood%>
+                                <% else %>
+                                    <%= u_adr.address %>, <%= u_adr.address_number%>, <%= u_adr.extra_info%>, <%= u_adr.neighborhood%>
+                                <% end %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <hr>
+                        <div class="button-container">
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <%= u_adr.address_state %>/<%= u_adr.address_city %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>

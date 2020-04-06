@@ -1,0 +1,143 @@
+<div class="wrapper ">
+    <%= render 'layouts/sidebar' %>
+    <div class="content">       
+        <%= render 'layouts/navbar' %>        
+        <%= render 'layouts/flash_messages' %>
+            <div class="row ml-auto mr-auto">
+                <div class="col-md-10 mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-header" style="display: inline;">
+                            <h4 class="card-title" style="display: inline;">    Usuários 
+                                <span style="float: right"><%= @users.count %></span>
+                            </h4>
+                            <a href="/admin/users/new" style="margin-left: 2%; color: #51cbce;">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive table-striped">
+                                <table style="width: 100%;" id="datatable" data-source="<%= admin_users_path(format: :json) %>">
+                                    <thead>
+                                        <tr>
+                                            <th>Todos<input type="checkbox" id="select_all" name="select_invoice" /></th>
+                                            <th>Nome</th>
+                                            <th>Email</th>
+                                            <th>Data de Nascimento</th>
+                                            <th>Status</th>
+                                            <th>Editar</th>
+                                         </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <button type="button" id="remove">Deletar!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script> 
+var table = null;
+document.addEventListener("turbolinks:before-cache", function() {
+  if (table !== null) {
+   table.destroy()
+   table = null
+  }
+});
+//Configuring datatable
+var table = $('#datatable').DataTable({
+            processing: true,
+            fixedHeader: true,
+            keys: true,
+            responsive: true,
+            scrollY:        300,
+            deferRender:    true,
+            scroller:       true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            serverSide: true,
+            stateSave: true,
+            language: {
+            url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            },
+            ajax: {
+                "url": $('#datatable').data('source')
+            },
+            pagingType: "full_numbers",
+            columns: [        
+                {"data": ""},
+                {"data": "name"},
+                {"data": "email"},
+                {"data": "bday"},
+                {"data": "status_id"},
+                {"defaultContent": '<button>Editar</button>'},
+            ],
+            columnDefs: [{
+              orderable: false,
+              className: 'select-checkbox',      
+              targets: 0
+            },
+            {
+                targets: 0,
+                defaultContent: '',
+                visible: true,      
+                orderable : false,
+                searchable: false,
+            },
+            {
+                targets: 5,
+                className: 'edit-data',      
+                orderable: false,
+            },
+            {
+                targets: 1,
+                className: 'show-link',
+            },
+            ],
+            select: {
+                style:    'multi',
+                selector: 'td:first-child'
+            },            
+            order: [[1,'asc']],
+});
+
+//Select All
+$('#datatable').on('click', '#select_all', function() {
+    if ($('#select_all:checked').val() === 'on') {
+      table.rows().select();
+    }
+    else {
+      table.rows().deselect();
+    }      
+});  
+
+//Delete selected items
+$('#remove').click(function() {
+    if( $('.selected').length > 0) { 
+        var user_ids = [];
+        $('.selected').each(function() {
+            user_ids.push(table.row( this ).id());
+        });
+
+        $.ajax({
+             async: false,
+             global: false,
+             data: {user_ids: user_ids},
+             url: "/admin/destroy_multiple_users",
+             type: 'post'
+        });
+        table.ajax.reload();
+    }
+});
+
+$('#datatable').on('click', '.edit-data', function() {
+    let id = table.row( this ).id();
+    window.location = '/admin/users/'+id+"/edit";
+});
+
+</script>

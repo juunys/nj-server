@@ -10,16 +10,18 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
-//= require popper
-//= require bootstrap
-//= require admin/paper-dashboard/plugins/perfect-scrollbar.jquery.min
-//= require admin/paper-dashboard/plugins/chartjs.min
-//= require admin/paper-dashboard/plugins/bootstrap-notify
-//= require admin/paper-dashboard/plugins/bootstrap-switch
-//= require admin/paper-dashboard/paper-dashboard
-//= require rails-ujs
-//= require turbolinks
+//= require jquery_ujs
+//= require jquery-ui
 //= require cocoon
 //= require global
+//= require turbolinks
+//= require upload
+//= require z.jquery.fileupload
+//= require popper
+//= require admin/paper-dashboard/plugins/bootstrap-notify
+//= require admin/paper-dashboard/plugins/chartjs.min
+//= require admin/paper-dashboard/plugins/perfect-scrollbar.jquery.min
+//= require admin/paper-dashboard/paper-dashboard.min
+//= require admin/paper-dashboard/plugins/bootstrap-switch
+
 //= require ckeditor/config
