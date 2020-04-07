@@ -23,3 +23,4 @@ RSpec.describe UserRole, type: :model do
 	end
 
 end
+

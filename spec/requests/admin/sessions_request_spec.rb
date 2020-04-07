@@ -25,7 +25,7 @@ RSpec.describe "Admin::Sessions", type: :request do
 		    it "redirects to login when user sign in" do
 		    	
 		    	post '/admin/login', params: {email: @user.email, password: '123456'}
-	    		expect(response).to redirect_to admin_root_path
+	    		expect(response).to redirect_to admin_login_path
 	    		
 		    end
 

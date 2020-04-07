@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  	belongs_to :user_role
+	belongs_to :user_role
   	belongs_to :status_user
   	has_one :address, dependent: :destroy
   	has_many :orders, dependent: :destroy

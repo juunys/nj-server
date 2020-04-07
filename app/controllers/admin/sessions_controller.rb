@@ -9,17 +9,17 @@ class Admin::SessionsController < Admin::ApplicationController
         		redirect_to '/admin/dashboard'
 			else
 				flash[:error] = 'Falha no login! Verifique seu email ou sua Senha'
-				redirect_to '/admin'
+				redirect_to admin_login_path
 			end
 		else
 			flash[:error] = 'Usuário não encontrado, Verifique se este usuário Existe!'
-			redirect_to '/admin'
+			redirect_to admin_login_path
 		end
 	end
 
 	def destroy
 		session.delete(:user_id)
-		redirect_to '/admin'
+		redirect_to admin_login_path
 	end
 
 end

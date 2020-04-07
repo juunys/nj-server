@@ -5,12 +5,15 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.string :address_number
       t.string :complement
       t.string :neighborhood
-      t.string :cep
-      t.string :city
+      t.string :cep, null: false
       t.string :state
+      t.string :city
       t.references :user, foreign_key: true
 
       t.timestamps
     end
+    add_index :addresses, :cep
+    add_index :addresses, :state
+    add_index :addresses, :city
   end
 end

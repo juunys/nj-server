@@ -76,6 +76,8 @@ group :development, :test do
   gem 'chromedriver-helper'
   # Create model to test
   gem "factory_bot_rails"
+  # Assert_template has been extracted to a gem
+  gem 'rails-controller-testing'
   # Use database_cleaner to clean database after tests
   gem 'database_cleaner-active_record'
   # Use sqlite3 as the database for Active Record

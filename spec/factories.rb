@@ -1,24 +1,23 @@
 FactoryBot.define do
-  factory :status_user do
-    name { "MyString" }
-    query_name { "MyString" }
-  end
-
 
 	factory :user_role do
 		name {"Admin"}
 		query_name {"admin"}
 	end
 	
-	factory :user do
-		id {1}
-		first_name {"Mary"}
-		last_name {"Jane"}
-		email {"mary_jane@gmail.com"}
-		password {"123"}
-		user_role_id {1}
-		status_user_id {1}
-		created_at {'1/04/2020'}
+	factory :user do |f|
+		f.id {1}
+		f.first_name {"Mary"}
+		f.last_name {"Jane"}
+		f.email {"mary_jane@gmail.com"}
+		f.password {"123"}
+		f.user_role_id {1}
+		f.status_user_id {1}
+		f.created_at {'1/04/2020'}
+	end
+
+	factory :invalid_user, parent: :user do |f|
+		f.first_name nil
 	end
 
 	factory :product do
