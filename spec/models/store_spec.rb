@@ -15,6 +15,11 @@ RSpec.describe Store, type: :model do
 		    store2 = build(:store, user_id: 1)
 		    expect(store2).to_not be_valid
 		end
+
+		it "has a title" do
+		    store2 = build(:store, title: nil)
+		    expect(store2).to_not be_valid
+		end
 		
 	end
 end

@@ -20,5 +20,16 @@ RSpec.describe Gender, type: :model do
 		    gender2 = build(:gender, query_name: "prince")
 		    expect(gender2).to_not be_valid
 		end
+
+		it "is not valid without a name" do
+		    gender2 = build(:gender, name: nil)
+		    expect(gender2).to_not be_valid
+		end
+		
+		it "is not valid without a query_name" do
+		    gender2 = build(:gender, query_name: nil)
+		    expect(gender2).to_not be_valid
+		end
+		
 	end
 end

@@ -20,5 +20,16 @@ RSpec.describe Condition, type: :model do
 		    condition2 = build(:condition, query_name: "brand_new")
 		    expect(condition2).to_not be_valid
 		end
+
+		it "is not valid without a name" do
+		    condition2 = build(:condition, name: nil)
+		    expect(condition2).to_not be_valid
+		end
+		
+		it "is not valid without a query_name" do
+		    condition2 = build(:condition, query_name: nil)
+		    expect(condition2).to_not be_valid
+		end
+
 	end
 end

@@ -27,6 +27,7 @@ FactoryBot.define do
 		gender_id {1}
 		size_id {1}
 		status_product_id {1}
+		product_quantity_id {1}
 		name {'Macacão'}
 		description {'Macacão super fofo'}
 		price {87.99}
@@ -34,10 +35,14 @@ FactoryBot.define do
 		created_at {'1/04/2020'}
 	end
 
+	factory :product_quantity do
+		id {1}
+		quantity {1}
+		created_at {'1/04/2020'}
+	end
 
 	factory :order do
 		id {1}
-		sequencial_code_id {1}
 		quantity {1}
 		user_id {1}
 		product_id {1}
@@ -71,7 +76,9 @@ FactoryBot.define do
 	end
 
 	factory :store do
+		id {1}
 		user_id {1}
+		title {'Nana Jun'}
 	end
 
 	factory :code do
@@ -91,6 +98,11 @@ FactoryBot.define do
 	factory :status_product do
 		name {"Vendido"}
 		query_name {"sold"}
+	end
+
+	factory :status_user do
+		name {"Ativo"}
+		query_name {"active"}
 	end
 
 	factory :size do

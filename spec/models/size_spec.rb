@@ -20,5 +20,15 @@ RSpec.describe Size, type: :model do
 		    size2 = build(:size, query_name: "1_3_m")
 		    expect(size2).to_not be_valid
 		end
+
+		it "is not valid without a name" do
+		    size2 = build(:size, name: nil)
+		    expect(size2).to_not be_valid
+		end
+		
+		it "is not valid without a query_name" do
+		    size2 = build(:size, query_name: nil)
+		    expect(size2).to_not be_valid
+		end
 	end
 end

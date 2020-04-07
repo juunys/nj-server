@@ -20,5 +20,16 @@ RSpec.describe StatusProduct, type: :model do
 		    status_product2 = build(:status_product, query_name: "sold")
 		    expect(status_product2).to_not be_valid
 		end
+
+		it "is not valid without a name" do
+		    status_product2 = build(:status_product, name: nil)
+		    expect(status_product2).to_not be_valid
+		end
+		
+		it "is not valid without a query_name" do
+		    status_product2 = build(:status_product, query_name: nil)
+		    expect(status_product2).to_not be_valid
+		end
+		
 	end
 end

@@ -1,6 +1,6 @@
 class UserRole < ApplicationRecord
 	has_many :users, dependent: :destroy
 
-	validates :name, uniqueness: true
-	validates :query_name, uniqueness: true
+	validates :name, uniqueness: true, presence: true
+	validates :query_name, uniqueness: true, presence: true
 end
