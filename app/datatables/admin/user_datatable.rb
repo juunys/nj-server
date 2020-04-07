@@ -27,7 +27,7 @@ class Admin::UserDatatable < AjaxDatatablesRails::ActiveRecord
         {
             name: link_to(record.first_name, admin_user_path(record)),
             email: record.email,
-            bday: check_bday(record.date_of_birth),
+            bday: check_bday(record),
             status_id: check_status(record.status_user_id),
             id: link_to("Editar", edit_user(record)),
             DT_RowId: record.id,
@@ -35,9 +35,11 @@ class Admin::UserDatatable < AjaxDatatablesRails::ActiveRecord
         end
     end
 
-    def check_bday(bday)
-        if bday
-            return bday.strftime("%d/%m/%Y")
+    def check_bday(record)
+        if !record.date_of_birth.blank?
+            return record.date_of_birth.strftime("%d/%m/%Y")
+        else
+            return ''
         end
     end
 

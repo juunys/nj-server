@@ -36,7 +36,7 @@ Then("I should see {string}") do |string|
 end
 
 And("I should not be signed in") do
-  expect(page).to have_current_path(admin_root_path)
+  expect(page).to have_current_path(admin_login_path)
 end
 
 #-------------------- VALID USER -------------------------#

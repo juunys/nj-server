@@ -25,7 +25,7 @@ class Admin::UsersController < Admin::ApplicationController
         respond_to do |format|
             if @user.save
             	if @user.build_address(address_params).save
-                	format.html { redirect_to "/users", notice: 'Usuário criado com sucesso!' }
+                	format.html { redirect_to "/admin/users", notice: 'Usuário criado com sucesso!' }
                 end
             else
                 format.html { render :new }
@@ -41,7 +41,7 @@ class Admin::UsersController < Admin::ApplicationController
         respond_to do |format|
             if @user.update(user_params)
             	if @user.address.update(address_params)
-                	format.html { redirect_to "/users", notice: 'Usuário atualizado com sucesso!' }
+                	format.html { redirect_to "/admin/users", notice: 'Usuário atualizado com sucesso!' }
             	end
             else
                 format.html { render :edit }
@@ -77,7 +77,7 @@ class Admin::UsersController < Admin::ApplicationController
     end
 
     def user_params
-        params.require(:user).permit(:user_ids, :id, :avatar, :name, :date_of_birth, :email, :status_user_id, :user_role_id, :password, :password_confirmation)
+        params.require(:user).permit(:user_ids, :id, :avatar, :first_name, :last_name, :date_of_birth, :email, :status_user_id, :user_role_id, :password, :password_confirmation)
     end
 
     def address_params

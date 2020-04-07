@@ -70,7 +70,6 @@ group :development, :test do
   gem 'rspec-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
@@ -81,7 +80,7 @@ group :development, :test do
   # Use database_cleaner to clean database after tests
   gem 'database_cleaner-active_record'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.7'
+  gem 'sqlite3'
   
 end
 
@@ -93,11 +92,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.7'
+  gem 'sqlite3'
 end
 
 group :production do
-  gem 'pg', '~> 0.20.0'
+  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

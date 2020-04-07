@@ -75,13 +75,13 @@
 
                                 <%= fields_for :address do |u| %>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>Endereço</label>
-                                            <%= u.text_field :address, :required => true, class:"form-control", placeholder: ""%>
+                                            <%= u.text_field :address, class:"form-control", placeholder: ""%>
                                         </div>
-                                        <div class="form-group col-md-3 required-field">
+                                        <div class="form-group col-md-3">
                                             <label>Número</label>
-                                            <%= u.text_field :address_number, :required => true, class:"form-control", placeholder: "" %>
+                                            <%= u.text_field :address_number, class:"form-control", placeholder: "" %>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Complemento</label>
@@ -89,13 +89,13 @@
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>Bairro</label>
-                                            <%= u.text_field :neighborhood, :required => true, class:"form-control", placeholder: ""%>
+                                            <%= u.text_field :neighborhood, class:"form-control", placeholder: ""%>
                                         </div>
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>cep</label>
-                                            <%= u.text_field :cep, :required => true, class:"form-control", placeholder: "" %>
+                                            <%= u.text_field :cep, class:"form-control", placeholder: "" %>
                                         </div>
                                     </div>
                                     <div class="form-row">

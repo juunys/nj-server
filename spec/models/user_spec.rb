@@ -18,12 +18,6 @@ RSpec.describe User, type: :model do
 		    expect(user2).to_not be_valid
 		end
 
-		it "has a unique status_user" do
-		    user2 = build(:user, status_user_id: 1)
-		    expect(user2).to_not be_valid
-		end
-
-
 		it "is not valid without a password" do 
 		    user2 = build(:user, password: nil)
 		    expect(user2).to_not be_valid

@@ -8,7 +8,6 @@ class User < ApplicationRecord
   	validates :first_name, presence: true
   	validates :last_name, presence: true
 	validates :email, uniqueness: true, presence: true
-	validates :status_user_id, uniqueness: true, presence: true
 
 	def user_role
 		UserRole.find_by(id: self.user_role_id)

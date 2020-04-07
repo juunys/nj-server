@@ -11,10 +11,5 @@ RSpec.describe Address, type: :model do
 		    expect(@address).to be_valid
 		end
 
-		it "is not valid without a cep" do
-		    address2 = build(:address, cep: nil)
-		    expect(address2).to_not be_valid
-		end
-
 	end
 end
