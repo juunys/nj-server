@@ -81,7 +81,7 @@ class Admin::UsersController < Admin::ApplicationController
     end
 
     def address_params
-    	params.required(:address).permit(:id, :address, :address_number, :complement, :neighborhood, :cep, :city, :state)
+    	params.required(:address).permit(:id, :address, :address_number, :complement, :neighborhood, :cep, :city, :state, :user_id)
     end
 
     def set_s3_direct_post

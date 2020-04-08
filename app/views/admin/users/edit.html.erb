@@ -1,9 +1,9 @@
 <div class="wrapper ">   
-    <%= render 'layouts/sidebar' %>
+    <%= render 'layouts/admin/sidebar' %>
     <div class="content">       
-        <%= render 'layouts/navbar' %>        
-        <%= render 'layouts/flash_messages' %>
-        <%= form_for(@user, html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+        <%= render 'layouts/admin/navbar' %>        
+        <%= render 'layouts/admin/flash_messages' %>
+        <%= form_for([:admin,@user], html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
             <% if @user.errors.any? %>
                 <div id="error_explanation">
                     <ul>
@@ -23,32 +23,47 @@
                             <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 required-field">
-                                        <label class="active">Nome</label>
-                                        <%= f.text_field :name, required:true, class:"form-control", placeholder: ""%>
+                                        <label>Nome</label>
+                                        <%= f.text_field :first_name, required:true, class:"form-control", placeholder: ""%>
                                     </div>
                                     <div class="form-group col-md-6 required-field">
-                                        <label class="active">Email</label>
-                                        <%= f.text_field :email, :required => true, class:"form-control", placeholder: "" %>
+                                        <label>Sobrenome</label>
+                                        <%= f.text_field :last_name, required:true, class:"form-control", placeholder: ""%>
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6 required-field">
-                                        <label>Data de Nascimento</label>
-                                        <%= f.text_field :date_of_birth, required:true, class:"form-control datepicker", placeholder: ""%>
+                                    <div class="form-group col-md-4 required-field">
+                                        <label>Email</label>
+                                        <%= f.text_field :email, :required => true, class:"form-control", placeholder: "" %>
                                     </div>
-                                    <div class="col-md-6" id="file_upload">
-                                        <label class="active">Imagem de Perfil</label>
+                                    <div class="form-group col-md-3">
+                                        <label>Data de Nascimento</label>
+                                        <%= f.text_field :date_of_birth, class:"form-control datepicker", placeholder: ""%>
+                                    </div>
+                                    <div class="col-md-4" id="file_upload">
+                                        <label>Imagem de Perfil</label>
                                         <%= f.file_field :avatar, id: :user_file_url,  accept:"image/png,image/jpeg", style:'font-size: 70%;'%>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6 required-field">
-                                        <label class="active">Senha</label>
+                                        <label>Senha</label>
                                         <%= f.password_field :password, :required => true, class:"form-control", placeholder: ""%>
                                     </div>
                                     <div class="form-group col-md-6 required-field">
-                                        <label class="active">Confirmar Senha</label>
+                                        <label>Confirmar Senha</label>
                                         <%= f.password_field :password_confirmation, :required => true, class:"form-control", placeholder: "" %>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Status</label>
+                                        <%= f.collection_select(:status_user_id, StatusUser.all, :id, :name) %>
+                                    </div>
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Permissão</label>
+                                        <%= f.collection_select(:user_role_id, UserRole.all, :id, :name) %>
                                     </div>
                                 </div>
                                 
@@ -60,37 +75,65 @@
 
                                 <%= fields_for :address do |u| %>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>Endereço</label>
-                                            <%= u.text_field :address, :required => true, value: @user.address.address, class:"form-control", placeholder: ""%>
+                                            <% if !@user.address.address %> 
+                                            	<%= u.text_field :address, class:"form-control", placeholder: ""%>
+                                            <% else %>
+												<%= u.text_field :address, value: @user.address.address, class:"form-control", placeholder: ""%>
+                                            <% end %>
                                         </div>
-                                        <div class="form-group col-md-3 required-field">
+                                        <div class="form-group col-md-3">
                                             <label>Número</label>
-                                            <%= u.text_field :address_number, value: @user.address.address_number, :required => true, class:"form-control", placeholder: "" %>
+                                            <% if !@user.address.address_number %>
+                                            	<%= u.text_field :address_number, class:"form-control", placeholder: "" %>
+                                            <% else %>
+												<%= u.text_field :address_number, value: @user.address.address_number, class:"form-control", placeholder: "" %>
+                                            <% end %>
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label>Complemento</label>
-                                            <%= u.text_field :extra_info, value: @user.address.extra_info, class:"form-control", placeholder: "" %>
+                                            <% if !@user.address.complement %>
+                                            	<%= u.text_field :complement, class:"form-control", placeholder: "" %>
+                                            <% else %>
+												<%= u.text_field :complement, value: @user.address.complement, class:"form-control", placeholder: "" %>
+                                            <% end %>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>Bairro</label>
-                                            <%= u.text_field :neighborhood, value: @user.address.neighborhood, :required => true, class:"form-control", placeholder: ""%>
+                                            <% if !@user.address.neighborhood %>
+                                            	<%= u.text_field :neighborhood, class:"form-control", placeholder: ""%>
+                                            <% else %>
+												<%= u.text_field :neighborhood, value: @user.address.neighborhood, class:"form-control", placeholder: ""%>
+                                            <% end %>
                                         </div>
-                                        <div class="form-group col-md-6 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>cep</label>
-                                            <%= u.text_field :cep, value: @user.address.cep, :required => true, class:"form-control", placeholder: "" %>
+                                            <% if !@user.address.cep %>
+                                            	<%= u.text_field :cep, class:"form-control", placeholder: "" %>
+                                            <% else %>
+												<%= u.text_field :cep, value: @user.address.cep, class:"form-control", placeholder: "" %>
+                                            <% end %>
                                         </div>
                                     </div>
                                     <div class="form-row">
-                                        <div class="form-group col-md-4 required-field">
+                                        <div class="form-group col-md-6">
                                             <label>Estado</label>
-                                            <%= u.text_field :address_state, value: @user.address.address_state, :required => true, class:"form-control", placeholder: "" %>
+                                            <% if !@user.address.state %>
+                                            	<%= u.text_field :state, class:"form-control", placeholder: "" %>
+                                            <% else %>
+												<%= u.text_field :state, value: @user.address.state, class:"form-control", placeholder: "" %>
+                                            <% end %>
                                         </div>
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-6">
                                             <label>Cidade</label>
-                                            <%= u.text_field :address_city, value: @user.address.address_city, class:"form-control", placeholder: "" %>
+                                            <% if !@user.address.city %>
+                                            	<%= u.text_field :city, class:"form-control", placeholder: "" %>
+                                            <% else %>
+												<%= u.text_field :city, value: @user.address.city, class:"form-control", placeholder: "" %>
+                                            <% end %>
                                         </div>
                                     </div>
                                 <% end %>
@@ -98,7 +141,7 @@
                                 <div class="form-row">
                                     <div class="input-field update ml-auto mr-auto">
                                         <%= f.button :submit, class:"btn btn-primary btn-round" do %>
-                                        <i class="fas fa-globe-americas"></i> Criar/Atualizar
+                                        <i class="fas fa-globe-americas"></i> Atualizar
                                         <% end %>
                                     </div>
                                 </div>

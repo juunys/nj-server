@@ -1,1 +1,128 @@
-<%= render 'form' %>    
+<div class="wrapper ">   
+    <%= render 'layouts/admin/sidebar' %>
+    <div class="content">       
+        <%= render 'layouts/admin/navbar' %>        
+        <%= render 'layouts/admin/flash_messages' %>
+        <%= form_for([:admin,@user], html: { class: 'directUpload', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+            <% if @user.errors.any? %>
+                <div id="error_explanation">
+                    <ul>
+                        <% @user.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+            <div class="row">
+                <div class="col-md-8" style="margin: auto">
+                    <div class="card card-user">
+                        <div class="card-header">
+                            <h5 class="card-title">Usuário</h5>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Nome</label>
+                                        <%= f.text_field :first_name, required:true, class:"form-control", placeholder: ""%>
+                                    </div>
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Sobrenome</label>
+                                        <%= f.text_field :last_name, required:true, class:"form-control", placeholder: ""%>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-4 required-field">
+                                        <label>Email</label>
+                                        <%= f.text_field :email, :required => true, class:"form-control", placeholder: "" %>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Data de Nascimento</label>
+                                        <%= f.text_field :date_of_birth, class:"form-control datepicker", placeholder: ""%>
+                                    </div>
+                                    <div class="col-md-4" id="file_upload">
+                                        <label>Imagem de Perfil</label>
+                                        <%= f.file_field :avatar, id: :user_file_url,  accept:"image/png,image/jpeg", style:'font-size: 70%;'%>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Senha</label>
+                                        <%= f.password_field :password, :required => true, class:"form-control", placeholder: ""%>
+                                    </div>
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Confirmar Senha</label>
+                                        <%= f.password_field :password_confirmation, :required => true, class:"form-control", placeholder: "" %>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Status</label>
+                                        <%= f.collection_select(:status_user_id, StatusUser.all, :id, :name) %>
+                                    </div>
+                                    <div class="form-group col-md-6 required-field">
+                                        <label>Permissão</label>
+                                        <%= f.collection_select(:user_role_id, UserRole.all, :id, :name) %>
+                                    </div>
+                                </div>
+                                
+                                <nav class="navbar navbar-light navbar_hr">
+                                    <span class="navbar-text text_hr">
+                                       ENDEREÇO PARA USUÁRIO
+                                    </span>
+                                </nav>
+
+                                <%= fields_for :address do |u| %>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Endereço</label>
+                                            <%= u.text_field :address, class:"form-control", placeholder: ""%>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Número</label>
+                                            <%= u.text_field :address_number, class:"form-control", placeholder: "" %>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>Complemento</label>
+                                            <%= u.text_field :complement, class:"form-control", placeholder: "" %>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Bairro</label>
+                                            <%= u.text_field :neighborhood, class:"form-control", placeholder: ""%>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>cep</label>
+                                            <%= u.text_field :cep, class:"form-control", placeholder: "" %>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>Estado</label>
+                                            <%= u.text_field :state, class:"form-control", placeholder: "" %>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Cidade</label>
+                                            <%= u.text_field :city, class:"form-control", placeholder: "" %>
+                                        </div>
+                                    </div>
+                                <% end %>
+
+                                <div class="form-row">
+                                    <div class="input-field update ml-auto mr-auto">
+                                        <%= f.button :submit, class:"btn btn-primary btn-round" do %>
+                                        <i class="fas fa-globe-americas"></i> Criar
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
